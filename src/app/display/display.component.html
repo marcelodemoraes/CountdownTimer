@@ -1,0 +1,34 @@
+<link
+  rel="stylesheet"
+  media="screen"
+  href="https://fontlibrary.org/face/segment7"
+  type="text/css"
+/>
+<div class="display">
+  <p class="seven-segment">
+    {{ (time.getHours() < 10 ? '0' : '') + time.getHours() }}
+  </p>
+  :
+  <p class="seven-segment">
+    {{ (time.getMinutes() < 10 ? '0' : '') + time.getMinutes() }}
+  </p>
+  :
+  <p class="seven-segment">
+    {{ (time.getSeconds() < 10 ? '0' : '') + time.getSeconds() }}
+  </p>
+</div>
+
+<div class="display-buttons">
+  <button
+    id="start"
+    class="btn btn-lg {{ isTimerRunning ? 'btn-danger' : 'btn-success' }}"
+    (click)="toogleTimer()"
+  >
+    {{ isTimerRunning ? 'Pause' : isStart ? 'Start' : 'Resume' }}
+  </button>
+  <button id="reset" class="btn btn-warning btn-lg" (click)="resetTimer()">
+    Reset
+  </button>
+</div>
+
+<app-timer-settings (timerSetted)="setTimer($event)"></app-timer-settings>
